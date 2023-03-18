@@ -13,7 +13,7 @@ class ChatGptContollrer: UIViewController {
     func generateConversation(completion: @escaping (String?, Error?) -> Void) {
         let urlString = "https://api.openai.com/v1/engines/davinci-codex/completions"
         let headers = ["Content-Type": "application/json",
-                       "Authorization": "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"]
+                       "Authorization": ""]
         let parameters: [String: Any] = ["prompt": "Hello, how are you?",
                                          "max_tokens": 50,
                                          "temperature": 0.7]
