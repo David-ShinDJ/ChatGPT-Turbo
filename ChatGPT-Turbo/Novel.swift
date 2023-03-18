@@ -10,14 +10,15 @@ import Foundation
 
 class Novel {
     
-    var title:String?
-    var plot:String?
-    var tag:[String]?
+    let title:String
+    let plot:String
+    let tag:[String]
     
-    init(title: String? = nil, plot: String? = nil, tag: [String]? = nil) {
+    init(title: String, plot: String, tag: [String]) {
         self.title = title
         self.plot = plot
         self.tag = tag
     }
+    
     
 }
