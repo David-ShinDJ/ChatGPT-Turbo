@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 
 class ChatGptContollrer: UIViewController {
+    
+    
+    
+    @IBOutlet weak var listNovelLabel: UILabel!
+    
     let fileManager: FileManager = FileManager.default
     func generateConversation(completion: @escaping (String?, Error?) -> Void) {
         let urlString = "https://api.openai.com/v1/engines/davinci-codex/completions"
@@ -34,11 +39,11 @@ class ChatGptContollrer: UIViewController {
             let conversation = (result?["choices"] as? [[String: Any]])?[0]["text"] as? String
 
             completion(conversation, nil)
-            print(conversation)
         }
         
         task.resume()
     }
+    
     
     func readFile() {
         // 만든 파일 불러와서 읽기.
@@ -63,14 +68,30 @@ class ChatGptContollrer: UIViewController {
     
     
     @IBAction func chatPressed(_ sender: UIButton) {
-        print(directoryPath.pathComponents)
-        print(getMyNovelDirectoryFiles())
+        
     }
     
+    var listNovel:[Novel]? = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        let documentNovels = getMyNovelDirectoryFiles()!
+        for novel in documentNovels {
+            let listText = readTextFileFromMyNovelDirectory(fileName: novel)!
+            let splitText = listText.description.split(separator: "\n")
+            let plotText = splitText.last!
+            let keywordText = splitText.first!
+            let newNovel = Novel(title: novel, plot: String(plotText), keywords: String(keywordText))
+            listNovel?.append(newNovel)
+        }
+        
+        for novel in listNovel! {
+            listNovelLabel.text! += "\(novel.title)\n"
+        }
+        
     }
+    
     func getMyNovelDirectoryFiles() -> [String]? {
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -83,6 +104,21 @@ class ChatGptContollrer: UIViewController {
             return nil
         }
     }
+    
+    func readTextFileFromMyNovelDirectory(fileName: String) -> String? {
+        let fileManager = FileManager.default
+        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let myNovelUrl = documentsUrl.appendingPathComponent("내소설")
+        let fileUrl = myNovelUrl.appendingPathComponent(fileName)
+        do {
+            let text = try String(contentsOf: fileUrl, encoding: .utf8)
+            return text
+        } catch {
+            print("Error while reading file \(fileName): \(error.localizedDescription)")
+            return nil
+        }
+    }
+
 
 
 }

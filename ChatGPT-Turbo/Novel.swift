@@ -12,12 +12,12 @@ class Novel {
     
     let title:String
     let plot:String
-    let tag:[String]
+    let keywords:String
     
-    init(title: String, plot: String, tag: [String]) {
+    init(title: String, plot: String, keywords: String) {
         self.title = title
         self.plot = plot
-        self.tag = tag
+        self.keywords = keywords
     }
     
     

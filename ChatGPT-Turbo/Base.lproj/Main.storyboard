@@ -116,14 +116,31 @@
                                     <action selector="chatPressed:" destination="Ctu-Mo-A2e" eventType="touchUpInside" id="b3l-9B-E9q"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPF-Lv-xnT" userLabel="ListNovelLabel">
+                                <rect key="frame" x="96.666666666666686" y="89" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="U6h-Jj-fL9"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="fsu-Kl-OXA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yr4-2H-ZNd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cPF-Lv-xnT" firstAttribute="top" secondItem="Yr4-2H-ZNd" secondAttribute="top" constant="30" id="dyF-kh-C5q"/>
+                            <constraint firstItem="cPF-Lv-xnT" firstAttribute="centerX" secondItem="GU8-a7-d3z" secondAttribute="centerX" id="wl4-d2-qym"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="listNovelLabel" destination="cPF-Lv-xnT" id="Iaw-7E-j2r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daV-3c-43O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="350" y="-27"/>
+            <point key="canvasLocation" x="422" y="99"/>
         </scene>
     </scenes>
     <resources>
