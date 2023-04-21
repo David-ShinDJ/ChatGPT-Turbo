@@ -32,5 +32,35 @@ final class ChatGPT_TurboTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    override func setUp() async throws {
+        
+    }
+    
+    override class func tearDown() {
+        
+    }
+    
+    func testIncrementCounter() {
+        let counter = Counter()
+        counter.increment()
+        
+        XCTAssertEqual(counter.counter, 1, "Counter was not incremented: \(counter)")
+    }
+    
+    
+    func testCreateDirectory(fileName:String) throws {
+        do {
+            let fileManager: FileManager = FileManager.default
+            let documentPath: URL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let directoryPath: URL = documentPath.appendingPathComponent(fileName)
+            try fileManager.createDirectory(at: directoryPath, withIntermediateDirectories: false, attributes: nil)
+        }  catch let e {
+            print(e.localizedDescription)
+        }
+    }
+    
+    
+    
 
 }
